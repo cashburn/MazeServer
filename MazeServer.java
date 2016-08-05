@@ -243,67 +243,6 @@ public class MazeServer implements Runnable {
         }
         
     }
-    public boolean isCorrect(String[] input) {
-        String[] list = { "CL50","EE","LWSN","PMU","PUSH","*" };
-        boolean isCorrect;
-        boolean isCorrect1 = false;
-        boolean isCorrect2 = false;
-        if (input[0] != null) {
-            for (int i = 0; i < list.length; i++) {
-                if (list[i].equals(input[1]))
-                    isCorrect1 = true;
-                if (list[i].equals(input[2]))
-                    isCorrect2 = true;
-            }
-            isCorrect = isCorrect1 && isCorrect2 && (!input[1].equals(input[2]));
-            if (isCorrect && (!input[1].equals("*"))) {
-                int test;
-                try {
-                    test = Integer.parseInt(input[3]);
-                }
-                catch (NumberFormatException e) {
-                    return false;
-                }
-                if (test == 0 || test == 1 || test == 2)
-                    return true;
-               
-            }
-        }
-        return false;
-    }
-    public String toString1(String[] input) {
-        String toString = "";
-        for (int i = 0; i < input.length; i++) {
-            toString += input[i];
-            if (i < (input.length - 1))
-                toString += ", ";
-        }
-        return toString;
-    }
-    public String toString(String[] input) {
-        String toString = "";
-        for (int i = 0; i < input.length; i++) {
-            toString += input[i];
-            if (i < (input.length - 1))
-                toString += ",";
-        }
-        return toString;
-    }
-    public static String[] fromString(String input) {
-        int beg = 0;
-        int i = 0;
-        int end;
-        String[] output = new String[4];
-        while (input.contains(",")) {
-            end = input.indexOf(',');
-            output[i] = input.substring(0,end);
-            input = input.substring(end + 1);
-            beg = end;
-            i++;
-        }
-        output[3] = input;
-        return output;
-    }
     public static void main(String[] args) throws SocketException, IOException, FileNotFoundException {
         String filename = "maze.txt";
         MazeServer server;
