@@ -89,6 +89,12 @@ public class MazeServer implements Runnable {
                 if (isSolved)
                     line = ":SHUTDOWN";
             }
+
+            else if (input.equals("check")) {
+                pw.printf("{'checkUp':'%b','checkRight':'%b','checkDown':'%b'," +
+                   "'checkLeft':'%b','isSolved':'%b'}", checkUp(), checkRight(), checkDown(), checkLeft(), isSolved());
+                pw.flush();
+            }
             
             else if (input.equals("checkUp")) {
                 pw.println(this.checkUp());
